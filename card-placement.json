@@ -1,0 +1,47 @@
+{
+ "qualifying-income": {
+  "px": 49.653,
+  "py": 1.358,
+  "cols": 3
+ },
+ "application-process": {
+  "px": 8.125,
+  "py": 53.457,
+  "cols": 1
+ },
+ "documentation-requirements": {
+  "px": 49.097,
+  "py": 1.852,
+  "cols": 3
+ },
+ "concessions-pricing": {
+  "px": 73.125,
+  "py": 13.951,
+  "cols": 1
+ },
+ "leasing-process": {
+  "px": 1.042,
+  "py": 62.593,
+  "cols": 3
+ },
+ "special-programs": {
+  "px": 24.653,
+  "py": 72.963,
+  "cols": 3
+ },
+ "resident-lease-management": {
+  "px": 20.069,
+  "py": 1.358,
+  "cols": 3
+ },
+ "common-scenarios": {
+  "px": 45.486,
+  "py": 45.556,
+  "cols": 3
+ },
+ "rental-history": {
+  "px": 10.903,
+  "py": 47.778,
+  "cols": 3
+ }
+}

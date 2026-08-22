@@ -1,0 +1,3 @@
+{
+  "tests/test_interactions.py::test_moving_focus_keeps_one_card_open": true
+}
