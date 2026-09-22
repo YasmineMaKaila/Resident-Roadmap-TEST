@@ -1,0 +1,49 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: tests/requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r tests/requirements.txt
+
+      - name: Install Chromium for Playwright
+        run: python -m playwright install --with-deps chromium
+
+      - name: Build index.html from source
+        run: python src/build.py
+
+      - name: Fail if the committed index.html is stale
+        run: |
+          if ! git diff --quiet -- index.html; then
+            echo "::error::index.html differs from a fresh build of src/."
+            echo "Run 'python src/build.py' and commit the result."
+            git diff --stat -- index.html
+            exit 1
+          fi
+          echo "index.html is in sync with src/."
+
+      - name: Run the suite
+        run: pytest tests/ -v --tb=short
+
+      - name: Confirm the build is self-contained
+        run: |
+          external=$(grep -o 'https\?://[^"'"'"' )]*' index.html | grep -v 'www.w3.org' | wc -l)
+          echo "external references: $external"
+          test "$external" -eq 0 || { echo "::error::index.html has external references"; exit 1; }

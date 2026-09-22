@@ -1,0 +1,8 @@
+# Build + test toolchain. The published index.html needs none of this at runtime.
+playwright==1.49.1
+pytest==8.3.4
+pymupdf==1.25.1      # PDF -> SVG extraction (src/extract_from_pdf.py)
+pypdf==5.1.0         # AcroForm widget / hotspot image extraction
+pillow==11.0.0       # raster measurement
+numpy==2.2.0         # placement optimiser
+scipy==1.14.1        # connected-component classification
